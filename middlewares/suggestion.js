@@ -42,6 +42,9 @@ var Suggestion = function(sequelize) {
 	}
 
 	this.list = function(req, res, next) {
+		var query = {
+			where: {}
+		}
 		sequelize.models.suggestion.findAndCountAll(query).then(function(suggestions) {
 			req.payload.suggestions = suggestions
 			next()
