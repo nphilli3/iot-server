@@ -1,0 +1,6 @@
+{
+	"port": 3002,
+	"host": "localhost",
+	"protocol": "http",
+	"timeout": 90000
+}

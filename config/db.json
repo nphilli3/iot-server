@@ -1,0 +1,9 @@
+{
+	"host" : "localhost",
+	"port" : "3306",
+	"database" : "react_iot",
+	"user" : "nate",
+	"password" : "Password",
+	"dialect": "mysql",
+	"logging": false
+}
