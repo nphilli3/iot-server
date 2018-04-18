@@ -4,28 +4,16 @@ module.exports = function(sequelize){
 	var router = require('express').Router()
 	var suggestion = require('../middlewares/suggestion')(sequelize)
 
-
-
-
-
-	router.post('/suggestion', suggestion.create)
-	router.get('/suggestion', suggestion.list)
-	router.get('/suggestion/:id', suggestion.read)
-	router.put('/suggestion/:id', suggestion.update)
-	router.delete('/suggestion/:id', suggestion.destroy)
-
-
+	router.post('/', suggestion.create)
+	router.get('/', suggestion.list)
+	router.get('/:id', suggestion.read)
+	router.put('/:id', suggestion.update)
+	router.delete('/:id', suggestion.destroy)
 
 	//Create
 	router.post('/',function(req,res){
-		sequelize.models.suggestion.create(req.body).then(function(suggestion) {
-			req.payload.suggestion = suggestion
-			next()
-		}).catch(function(error){
-			handler.badRequest(req,res,error.message)
-		})
-			res.json(req.payload.suggestion)
-		})
+		res.json(req.payload.suggestion)
+	})
 
 	//List
 	router.get('/', function(req, res) {

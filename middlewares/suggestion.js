@@ -1,4 +1,5 @@
 var Suggestion = function(sequelize) {
+	
 	var handler = require('../library/handler')
 
 	this.create = function(req, res, next) {
@@ -7,16 +8,6 @@ var Suggestion = function(sequelize) {
 			next()
 		}).catch(function(error){
 			handler.badRequest(req,res,error.message)
-		})
-	}
-
-	this.request = function(req, res, next) {
-		sequelize.models.suggestion.findById(req.body.suggestionId).then(function(suggestion) {
-			if (!suggestion) return handler.notFound(req, res, 'Suggestion not found.')
-			req.payload.suggestion = suggestion
-			next()
-		}).catch(function(error) {
-			handler.badRequest(req, res, error.message)
 		})
 	}
 
@@ -29,9 +20,9 @@ var Suggestion = function(sequelize) {
 	}
 
 	this.update = function(req, res, next) {
-		var payload = req.payload.suggestion
-		payload.update(req.body).then(function(updated){
-			payload = updated
+		var suggestion = req.payload.suggestion
+		suggestion.update(req.body).then(function(updated){
+			req.payload.suggestion = updated
 			next()
 		}).catch(function(error){
 			handler.badRequest(req,res,error.message)

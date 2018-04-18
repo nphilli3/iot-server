@@ -1,6 +1,5 @@
 var Handler = function(){
 
-
 	this.formatError = function(error){
 		var err = {}
 		var keys = Object.getOwnPropertyNames(error)
