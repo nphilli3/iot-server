@@ -18,12 +18,6 @@ module.exports = function(sequelize){
 
 	//Create
 	router.post('/',function(req,res){
-		sequelize.models.suggestion.create(req.body).then(function(suggestion) {
-			req.payload.suggestion = suggestion
-			next()
-		}).catch(function(error){
-			handler.badRequest(req,res,error.message)
-		})
 			res.json(req.payload.suggestion)
 		})
 
