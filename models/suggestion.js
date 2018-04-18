@@ -9,7 +9,7 @@ module.exports = function(sequelize) {
 			primaryKey: true,
 			autoIncrement: true
 		},
-		suggestionMessage: {
+		message: {
 			type: Sequelize.TEXT
 		},
 	}, {
