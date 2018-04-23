@@ -4,9 +4,10 @@ module.exports = function(sequelize){
 	var router = require('express').Router()
 	var suggestion = require('../middlewares/suggestion')(sequelize)
 
+	router.use('/:id', suggestion.read)
 	router.post('/', suggestion.create)
 	router.get('/', suggestion.list)
-	router.get('/:id', suggestion.read)
+	// router.get('/:id', suggestion.read)
 	router.put('/:id', suggestion.update)
 	router.delete('/:id', suggestion.destroy)
 
@@ -17,10 +18,10 @@ module.exports = function(sequelize){
 
 	//List
 	router.get('/', function(req, res) {
-	  var payload = req.payload.suggestion
+	  var payload = req.payload.suggestions
 	  payload.limit = req.payload.query.limit
 	  payload.offset = req.payload.query.offset
-	  res.json(req.payload.suggestion)
+	  res.json(req.payload.suggestions)
 
 	});
 	//Read

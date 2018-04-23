@@ -20,9 +20,9 @@ var Suggestion = function(sequelize) {
 	}
 
 	this.update = function(req, res, next) {
-		var suggestion = req.payload.suggestion
-		suggestion.update(req.body).then(function(updated){
-			req.payload.suggestion = updated
+		var payload = req.payload.suggestion
+		payload.update(req.body).then(function(updated){
+			payload = updated
 			next()
 		}).catch(function(error){
 			handler.badRequest(req,res,error.message)
@@ -42,9 +42,7 @@ var Suggestion = function(sequelize) {
 	}
 
 	this.list = function(req, res, next) {
-		var query = {
-			where: {}
-		}
+		var query = req.payload.query
 		sequelize.models.suggestion.findAndCountAll(query).then(function(suggestions) {
 			req.payload.suggestions = suggestions
 			next()

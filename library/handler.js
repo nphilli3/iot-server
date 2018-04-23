@@ -20,11 +20,7 @@ var Handler = function(){
 		var error = new Error(message || 'Bad Request')
 		error.source = req.originalUrl
 		res.json(this.formatError(error))
-		req.log.update({
-			status: 400,
-			message: error.message,
-			stack: error.stack
-		})
+
 	}
 
 	this.unauthorized = function(req,res,message){
@@ -32,11 +28,6 @@ var Handler = function(){
 		var error = new Error( message || 'Unauthorized')
 		error.source = req.originalUrl
 		res.json(this.formatError(error))
-		req.log.update({
-			status: 401,
-			message: error.message,
-			stack: error.stack
-		})
 	}
 
 	this.notFound = function(req,res,message){
@@ -44,11 +35,7 @@ var Handler = function(){
 		var error = new Error( message || 'Not Found')
 		error.source = req.originalUrl
 		res.json(this.formatError(error))
-		req.log.update({
-			status: 404,
-			message: error.message,
-			stack: error.stack
-		})
+
 	}
 
 	this.notModified = function(req,res,message){
@@ -56,11 +43,7 @@ var Handler = function(){
 		var error = new Error( message || 'Not Modified')
 		error.source = req.originalUrl
 		res.json(this.formatError(error))
-		req.log.update({
-			status: 304,
-			message: error.message,
-			stack: error.stack
-		})
+
 	}
 
 	this.internalError = function(req,res,message){
@@ -68,11 +51,7 @@ var Handler = function(){
 		var error = new Error( message || 'Internal Server Error')
 		error.source = req.originalUrl
 		res.json(this.formatError(error))
-		req.log.update({
-			status: 500,
-			message: error.message,
-			stack: error.stack
-		})
+
 	}
 
 }
